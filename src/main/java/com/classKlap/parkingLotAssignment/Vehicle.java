@@ -82,6 +82,20 @@ public class Vehicle {
 
     }
     
+    /**this method gives Registration numbers of a particular vehicle type.**/
+    public String registrationNumByVehicleType(String vehicleType) {
+    	
+    	ArrayList<String> registrationNumbers = new ArrayList<String>();
+    	for(Map.Entry<Integer, Vehicle> entry:ht.entrySet()){     
+            Vehicle v=entry.getValue();
+            if(vehicleType.equalsIgnoreCase(v.type)) {
+            	registrationNumbers.add(v.registration_number);   
+            } 
+        } 
+    	return String.join(", ", registrationNumbers);
+
+    }
+    
     /**This method gives Slot number in which a car with a given registration number is parked. **/
     public int getSlotNumByReg(String registrationNum) {
     	int SlotNum = 0;

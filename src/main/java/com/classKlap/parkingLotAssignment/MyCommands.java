@@ -49,6 +49,12 @@ public class MyCommands {
 		return String.format(registrationNums);
 	}
 	
+	@ShellMethod("Gives Registration numbers of a particular vehicle type.")
+	public String registration_numbers_for_vehicle_type(String VehicleType) {
+		String registrationNums = vehicle.registrationNumByVehicleType(VehicleType);
+		return String.format(registrationNums);
+	}
+	
 	@ShellMethod("Gives Slot number in which a car with a given registration number is parked.")
 	public String slot_number_for_registration_number(String reg_number) {
 		int SlotNum = vehicle.getSlotNumByReg(reg_number);

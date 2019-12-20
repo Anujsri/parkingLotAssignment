@@ -74,6 +74,26 @@ class ParkingLotAssignmentApplicationTests {
 		
 	}
 	
+	/** Creating method to test, registration Number By vehicle type is working or not **/
+	@Test
+	void registrationNumByVehicleType() {
+		vehicle.totalSlots = 3;
+		Vehicle v1 = new Vehicle("abcd","white","car");
+		Vehicle v2 = new Vehicle("bcde","blue","suv");
+		Vehicle v3 = new Vehicle("cdef","white","hv");
+		vehicle.addParking(v1);
+		vehicle.addParking(v2);
+		vehicle.addParking(v3);
+		String regNums = vehicle.registrationNumByVehicleType("car").replaceAll(" ","").replaceAll(",","");
+		char tempArray[] = regNums.toCharArray(); 
+        Arrays.sort(tempArray); 
+		if((new String(tempArray)).equals("abcd")) 
+			assert(true);
+		else
+			assert(false);
+		
+	}
+	
 	/** Creating method to test, get Slot Number By Registration is working or not **/
 	@Test
 	void getSlotNumByRegTest() {
