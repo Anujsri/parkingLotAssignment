@@ -18,8 +18,8 @@ public class MyCommands {
 	
 	/** method for adding a vehicle to Parking lot **/
 	@ShellMethod("Allot a slot to vehicle for parking")
-	public String park(String reg_number, String colorName) {
-		Vehicle v = new Vehicle(reg_number, colorName);
+	public String park(String reg_number, String colorName,String type) {
+		Vehicle v = new Vehicle(reg_number, colorName,type);
 		int alottedSlot = vehicle.addParking(v);
 		if(alottedSlot > 0)
 			return String.format("Allocated slot number: %d",alottedSlot );
@@ -56,6 +56,12 @@ public class MyCommands {
 			return "Not Found";
 		else
 			return Integer.toString(SlotNum);
+	}
+	
+	@ShellMethod("Gives Slot numbers of vehicle type")
+	public void slot_number_for_vehicle_type(String vehicleType) {
+		vehicle.getSlotsNumByVehicleType(vehicleType);
+		
 	}
 	
 	@ShellMethod("Gives Slot numbers of all slots where a car of a particular colour is parked.")

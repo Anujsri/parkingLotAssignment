@@ -28,7 +28,7 @@ class ParkingLotAssignmentApplicationTests {
 	@Test
 	void addParkingTest() {
 		vehicle.totalSlots = 3;
-		Vehicle v = new Vehicle("abcd","white");
+		Vehicle v = new Vehicle("abcd","white","car");
 		int a = vehicle.addParking(v);
 		if(a == 1)
 			assert(true);
@@ -40,9 +40,9 @@ class ParkingLotAssignmentApplicationTests {
 	@Test
 	void leaveParkingTest() {
 		vehicle.totalSlots = 3;
-		Vehicle v1 = new Vehicle("abcd","white");
-		Vehicle v2 = new Vehicle("bcde","blue");
-		Vehicle v3 = new Vehicle("cdef","white");
+		Vehicle v1 = new Vehicle("abcd","white","car");
+		Vehicle v2 = new Vehicle("bcde","blue","suv");
+		Vehicle v3 = new Vehicle("cdef","white","hv");
 		vehicle.addParking(v1);
 		vehicle.addParking(v2);
 		vehicle.addParking(v3);
@@ -58,9 +58,9 @@ class ParkingLotAssignmentApplicationTests {
 	@Test
 	void registrationNumByColor() {
 		vehicle.totalSlots = 3;
-		Vehicle v1 = new Vehicle("abcd","white");
-		Vehicle v2 = new Vehicle("bcde","blue");
-		Vehicle v3 = new Vehicle("cdef","white");
+		Vehicle v1 = new Vehicle("abcd","white","car");
+		Vehicle v2 = new Vehicle("bcde","blue","suv");
+		Vehicle v3 = new Vehicle("cdef","white","hv");
 		vehicle.addParking(v1);
 		vehicle.addParking(v2);
 		vehicle.addParking(v3);
@@ -78,9 +78,9 @@ class ParkingLotAssignmentApplicationTests {
 	@Test
 	void getSlotNumByRegTest() {
 		vehicle.totalSlots = 3;
-		Vehicle v1 = new Vehicle("abcd","white");
-		Vehicle v2 = new Vehicle("bcde","blue");
-		Vehicle v3 = new Vehicle("cdef","white");
+		Vehicle v1 = new Vehicle("abcd","white","car");
+		Vehicle v2 = new Vehicle("bcde","blue","suv");
+		Vehicle v3 = new Vehicle("cdef","white","hv");
 		int a = vehicle.addParking(v1);
 		vehicle.addParking(v2);
 		vehicle.addParking(v3);
@@ -96,9 +96,9 @@ class ParkingLotAssignmentApplicationTests {
 	@Test
 	void parkingStatustest(){
 		vehicle.totalSlots = 3;
-		Vehicle v1 = new Vehicle("abcd","white");
-		Vehicle v2 = new Vehicle("bcde","blue");
-		Vehicle v3 = new Vehicle("cdef","white");
+		Vehicle v1 = new Vehicle("abcd","white","car");
+		Vehicle v2 = new Vehicle("bcde","blue","suv");
+		Vehicle v3 = new Vehicle("cdef","white","hv");
 		vehicle.addParking(v1);
 		vehicle.addParking(v2);
 		vehicle.addParking(v3);
@@ -110,9 +110,9 @@ class ParkingLotAssignmentApplicationTests {
 	@Test
 	void getSlotsByColorTest() {
 		vehicle.totalSlots = 3;
-		Vehicle v1 = new Vehicle("abcd","white");
-		Vehicle v2 = new Vehicle("bcde","blue");
-		Vehicle v3 = new Vehicle("cdef","white");
+		Vehicle v1 = new Vehicle("abcd","white","car");
+		Vehicle v2 = new Vehicle("bcde","blue","suv");
+		Vehicle v3 = new Vehicle("cdef","white","hv");
 		vehicle.addParking(v1);
 		vehicle.addParking(v2);
 		vehicle.addParking(v3);
@@ -128,5 +128,29 @@ class ParkingLotAssignmentApplicationTests {
 			assert(false);
 		
 	}
+	
+	
+	/** Creating method to test, get Slots By Color is working or not**/
+	@Test
+	void getSlotsByVehicleType() {
+		vehicle.totalSlots = 3;
+		Vehicle v1 = new Vehicle("abcd","white","car");
+		Vehicle v2 = new Vehicle("bcde","blue","suv");
+		Vehicle v3 = new Vehicle("cdef","white","hv");
+		vehicle.addParking(v1);
+		vehicle.addParking(v2);
+		vehicle.addParking(v3);
+		ArrayList<Integer> slotNumbers = vehicle.getSlotsNumByVehicleType("car");
+		ArrayList<Integer> list2 =new ArrayList<Integer>();
+		list2.add(1);
+		System.out.println(slotNumbers);
+		System.out.println(list2);
+		if(slotNumbers.equals(list2))
+			assert(true);
+		else
+			assert(false);
+		
+	}
+	
 
 }

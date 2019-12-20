@@ -10,6 +10,7 @@ public class Vehicle {
     Scanner sc = new Scanner(System.in);
     String registration_number;
     String color;
+    String type;
     int count = 0;
     int totalSlots;
     
@@ -19,9 +20,16 @@ public class Vehicle {
     Vehicle() {}
     
     /** constructor to initialize the vehicle class object **/
-    Vehicle(String registration_number, String color) {
+    Vehicle(String registration_number, String color,String type) {
         this.registration_number = registration_number;
         this.color = color;
+        this.type = type;
+    }
+    
+    public int addToHashMap(Vehicle v,int index) {
+		ht.put(index, v);
+		count = count + 1;
+		return index;
     }
 
     /** Allot a slot to vehicle for parking **/
@@ -29,10 +37,18 @@ public class Vehicle {
     	int alottedSlot = 0;
         for (int i = 1; i <= totalSlots; i++) {
             if (ht.containsKey(i) == false) {
-                ht.put(i, v);
-                count = count + 1;
-                alottedSlot = i;
-                break;
+            	if(i%3 == 1 && v.type.equalsIgnoreCase("car")) {
+            		alottedSlot = addToHashMap(v,i);
+                    break;
+            	}	
+            	if(i%3 == 2 && v.type.equalsIgnoreCase("suv")) {
+            		alottedSlot = addToHashMap(v,i);
+                    break;
+            	}
+            	if(i%3 == 0 && v.type.equalsIgnoreCase("hv")) {
+            		alottedSlot = addToHashMap(v,i);
+                    break;
+            	}
             }
         }
         return alottedSlot;
@@ -93,13 +109,27 @@ public class Vehicle {
     	printArraylist(slotNumbers);
     	return slotNumbers;
     }
+   
+   
+   /** This method gives Slot numbers of all slots where a particular vehicle type is parked.**/
+   public ArrayList<Integer> getSlotsNumByVehicleType(String vehicleType){
+    	ArrayList<Integer> slotNumbers = new ArrayList<Integer>();
+    	for(Map.Entry<Integer, Vehicle> entry:ht.entrySet()){     
+            Vehicle v=entry.getValue(); 
+            if(vehicleType.equalsIgnoreCase(v.type)) {
+            	slotNumbers.add(entry.getKey()); 
+            }
+        }
+    	printArraylist(slotNumbers);
+    	return slotNumbers;
+    }
     
    	/** This method provide the utility to get the status of Parking Lot **/
     public void parkingStatus() {
-    	System.out.println("Slot No.\t Registration No\t Color");
+    	System.out.println("Slot No.\t Registration No\t Color\t Vehicle type");
     	for(Map.Entry<Integer, Vehicle> entry:ht.entrySet()){     
             Vehicle v=entry.getValue(); 
-            System.out.println(entry.getKey() + "\t\t  "+ v.registration_number + "\t\t\t" + v.color);
+            System.out.println(entry.getKey() + "\t\t  "+ v.registration_number + "\t\t" + v.color + "\t\t" + v.type);
         } 
     }
     
